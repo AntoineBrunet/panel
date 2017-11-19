@@ -91,12 +91,12 @@ class Controller {
 	private:
 		const uint8_t state_sop[4] = {SIG_GOOD, SIG_START, SIG_END, SIG_GOOD};
 		uint8_t signal_on_press;
-		const uint8_t state_led_ids[3] = {5,6,13};
+		const uint8_t state_led_ids[3] = {5,6,13,19};
 		const uint8_t state_led_values[4][3] = {
-			{255,255,  0},
-			{  0,255,255},
-			{255, 80,125},
-			{200,125,  0}
+			{255,255,  0,  0},
+			{  0,255,255,  0},
+			{255, 80,125,255},
+			{200,125,  0,  0}
 		};
 		const uint8_t but_pin = 26;
 		ros::NodeHandle n;
