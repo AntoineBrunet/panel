@@ -8,6 +8,9 @@
 #include <sstream>
 #include <thread>
 
+#define NB_STATES 4
+#define NB_OUT 4
+
 typedef struct {
 	uint16_t seq;
 	uint16_t flags;
@@ -77,7 +80,7 @@ class Controller {
 		}
 
 		void state_change(const cmg_msgs::State & msg) {
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < NB_OUT; i++) {
 				cmd << " p " << (int)state_led_ids[i] << " " << (int)state_led_values[msg.state][i];
 			}
 			cmd << std::endl;
@@ -91,8 +94,8 @@ class Controller {
 	private:
 		const uint8_t state_sop[4] = {SIG_GOOD, SIG_START, SIG_END, SIG_GOOD};
 		uint8_t signal_on_press;
-		const uint8_t state_led_ids[3] = {5,6,13,19};
-		const uint8_t state_led_values[4][3] = {
+		const uint8_t state_led_ids[NB_OUT] = {5,6,13,19};
+		const uint8_t state_led_values[NB_STATES][NB_OUT] = {
 			{255,255,  0,  0},
 			{  0,255,255,  0},
 			{255, 80,125,255},
